@@ -509,6 +509,25 @@ User.prototype.getFavoriteColor = function() {
 };
 ```
 
+You can define your custom types and then use `/* @return Promise<MyType> */`. The following result in a nice *TokenConsume(token) → {Promise.<Token>}* with a link to your custom Token type in the doc.
+```js
+/**
+ * @typedef Token
+ * @property {bool} valid True if the token is valid.
+ * @property {string} id The user id bound to the token.
+ */
+
+/**
+ * Consume a token
+ * @param  {string} token [description]
+ * @return {Promise<Token>} A promise to the token.
+ */
+TokenConsume = function (string) {
+  // bla bla
+}
+```
+It even works with `/* @return Promise<MyType|Error> */` or `/* @return Promise<MyType, Error> */`.
+
 ## Tips
 
 Sublime Text users, check out 
