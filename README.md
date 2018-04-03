@@ -23,6 +23,7 @@ You can learn more about JSDoc [here](http://usejsdoc.org/).
 * [Variables and Constants](#variables-and-constants)
 * [Links](#links)
 * [Examples](#examples)
+* [Promises](#promises)
 * [Tips](#tips)
 
 ## Intro
@@ -469,6 +470,44 @@ function addNumbers(a, b) {
 
 Use the **@example** tag within the comment block
 used to define a function, class, or constructor.
+
+## Promises
+
+You can use this syntax to document promises today:
+```js
+/**
+ * Retrieve the user's favorite color.
+ *
+ * @returns {Promise<string>} A promise that contains the user's favorite color
+ * when fulfilled.
+ */
+User.prototype.getFavoriteColor = function() {
+    // ...
+};
+```
+This is the recommended way to document promises. The only downside is that you can't document the error condition this way.
+
+This is the syntax that will be supported at some point in the future, for users who need to document the error condition:
+
+```js
+/**
+ * A promise for the user's favorite color.
+ *
+ * @promise FavoriteColorPromise
+ * @fulfill {string} The user's favorite color.
+ * @reject {TypeError} The user's favorite color is an invalid type.
+ * @reject {MissingColorError} The user has not specified a favorite color.
+ */
+
+/**
+ * Retrieve the user's favorite color.
+ *
+ * @returns {FavoriteColorPromise} A promise for the user's favorite color.
+ */
+User.prototype.getFavoriteColor = function() {
+    // ...
+};
+```
 
 ## Tips
 
